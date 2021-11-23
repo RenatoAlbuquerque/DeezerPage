@@ -11,7 +11,7 @@ import { getItensByArtist } from '../requestfunctions';
 
 function MusicCard() {
   const context = useContext(ItensContext)
-  const musics = context?.itens.tracks
+  const musics = ''
 
   console.log(musics)
   const [playerMusic, setPlayerMusic] = useState({});
