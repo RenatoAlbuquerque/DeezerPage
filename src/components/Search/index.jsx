@@ -1,49 +1,42 @@
+import React, { useState, useContext } from 'react';
 import { ItensContext } from '../../providers/itens';
-import React, { useContext, useState, useEffect } from 'react';
-import * as Style from '../style';
-import { VscSearch } from "react-icons/vsc";
-import api from '../../Services/api';
-import { getInitialItems } from '../requestfunctions';
+import * as S from '../style';
+import { VscSearch } from 'react-icons/vsc';
+import api from "../../Services/api";
 
-function Search() {
+
+
+const Search = () => {
+  const [useSearch, setUseSearch] = useState('')
   const { setItens } = useContext(ItensContext)
-  const [SearchMusic, setSearchMusic] = useState()
 
-  useEffect(() => {
-    getInitialItems().then((data) => setItens({ ...data }))
-  }, [setItens]);
-
-  const getItensBySearch = (e) => {
-    api
-      .get(`/search?q=${e}`)
-      .then((response) => setItens(response.data.data))
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
+  const handleChange = (e) => {
+    setUseSearch(e.target.value)
   }
 
-  const handleKeyPress = () => {
-    getItensBySearch(SearchMusic)
-  }
+  const getItensBySearch = async () => {
+    try {
+      const data = await api.get(`search?q=${useSearch}`)
+      setItens(data.data.data)
 
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
-    <>
-      <Style.SearchGlobal >
-        <Style.SearchBar>
-          <Style.SearchInput
-            placeholder="Pesquise por... Artista, Album ou Gênero"
-            onChange={(e) =>
-              setSearchMusic(e.target.value)}
-          />
-          <Style.SearchIcon>
-            <VscSearch onClick={() => handleKeyPress()} />
-          </Style.SearchIcon>
-        </Style.SearchBar>
-      </Style.SearchGlobal>
-    </>
+    <S.BackSearch>
+      <S.GlobalSearch>
+        <S.Search
+          placeholder="Pesquise por Artista, Álbum ou música..."
+          onChange={handleChange}
+        />
+        <S.ButtonSearch>
+          <VscSearch onClick={getItensBySearch} />
+        </S.ButtonSearch>
+      </S.GlobalSearch>
+    </S.BackSearch>
   )
 }
-export default Search;
 
-
+export default Search
