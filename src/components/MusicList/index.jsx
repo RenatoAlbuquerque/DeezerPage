@@ -9,6 +9,7 @@ import CardPlaylist from '../Cards/CardPlaylist';
 import CardPodcast from '../Cards/CardPodcast';
 import Search from '../Search';
 import Header from '../Header';
+import Player from '../Player';
 
 const MusicList = () => {
   const { itens, setItens } = useContext(ItensContext)
@@ -110,7 +111,7 @@ const MusicList = () => {
           :
           null
       }
-
+      <Player />
     </S.GlobalMusicList >
   )
 }

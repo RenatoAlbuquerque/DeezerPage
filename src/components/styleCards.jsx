@@ -38,7 +38,21 @@ export const ImageMusic = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color:pink;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+`
+
+export const ButtonPlayPreview = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
 `
 
 export const MusicName = styled.div`

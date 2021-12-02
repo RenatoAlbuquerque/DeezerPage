@@ -1,14 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import * as C from '../../styleCards';
 import { MdOutlineExplicit } from 'react-icons/md';
 import { SiYoutubemusic } from 'react-icons/si';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { GiMicrophone } from 'react-icons/gi';
+import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
 import { ItensContext } from '../../../providers/itens';
+import { MusicContext } from '../../../providers/musicPreview';
+import { PausePlayContext } from '../../../providers/pausePlayMusic';
 import api from "../../../Services/api";
 
 const CardMusic = ({ item }) => {
   const { setItens } = useContext(ItensContext)
+  const { setMusicPreview } = useContext(MusicContext)
+  const { pausePlayMusic } = useContext(PausePlayContext)
+  const [tooglePlayPause, setTooglePlayPause] = useState()
 
   const formatMusicDuration = (time) => {
     let mins = Math.floor((time % 3600) / 60);
@@ -39,6 +45,19 @@ const CardMusic = ({ item }) => {
     }
   }
 
+
+  const playMusic = (musicOn) => {
+    setMusicPreview(musicOn)
+    setTooglePlayPause(!tooglePlayPause)
+    if (tooglePlayPause) {
+      pausePlayMusic.current.onPlay();
+    } else {
+      pausePlayMusic.current.onPause();
+    }
+
+  }
+
+
   return (
     <C.MusicStats>
       <C.Position>
@@ -49,8 +68,18 @@ const CardMusic = ({ item }) => {
 
       {item.album ?
         <C.ImagePreview>
-          <C.ImageMusic background={item.album.cover}>
-            <AiOutlineHeart />
+          <C.ImageMusic
+            background={item.album.cover}
+            onClick={() =>
+              playMusic(item)}
+          >
+            <C.ButtonPlayPreview>
+              {tooglePlayPause ?
+                <AiFillPauseCircle />
+                :
+                <AiFillPlayCircle />
+              }
+            </C.ButtonPlayPreview>
           </C.ImageMusic >
         </C.ImagePreview>
         :

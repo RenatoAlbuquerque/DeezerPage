@@ -50,7 +50,7 @@ export const LocalTrending = styled.div`
   width: 100%;
   background-color: #EFEFEF;
   margin-bottom: 50px;
-  padding: 20px;
+  padding: 20px 0;
 `
 export const TrendingTypes = styled.div`
   display: flex;
