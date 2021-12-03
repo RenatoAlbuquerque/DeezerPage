@@ -12,9 +12,8 @@ import api from "../../../Services/api";
 const CardMusic = ({ item }) => {
   const { setItens } = useContext(ItensContext)
   const { setMusicPreview } = useContext(MusicContext)
-  const { setModal } = useContext(ModalContext)
+  const { modal, setModal } = useContext(ModalContext)
   const [musicFav, setMusicFav] = useState()
-
 
   const addFavMusic = (music) => {
     setMusicFav(music)
