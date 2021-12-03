@@ -21,6 +21,9 @@ export const UserOptions = styled.div`
   margin-right: 50px;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+  display: flex;
+  gap: 20px;
+  font-size: 1.6rem;
 `
 
 export const PageMusicFavs = styled.div`

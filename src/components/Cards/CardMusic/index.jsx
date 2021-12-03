@@ -2,19 +2,26 @@ import React, { useContext, useState } from 'react';
 import * as C from '../../styleCards';
 import { MdOutlineExplicit } from 'react-icons/md';
 import { SiYoutubemusic } from 'react-icons/si';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillPlayCircle } from 'react-icons/ai';
 import { GiMicrophone } from 'react-icons/gi';
-import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
 import { ItensContext } from '../../../providers/itens';
 import { MusicContext } from '../../../providers/musicPreview';
-import { PausePlayContext } from '../../../providers/pausePlayMusic';
+import { ModalContext } from '../../../providers/modal';
 import api from "../../../Services/api";
 
 const CardMusic = ({ item }) => {
   const { setItens } = useContext(ItensContext)
   const { setMusicPreview } = useContext(MusicContext)
-  const { pausePlayMusic } = useContext(PausePlayContext)
-  const [tooglePlayPause, setTooglePlayPause] = useState()
+  const { setModal } = useContext(ModalContext)
+  const [musicFav, setMusicFav] = useState()
+
+
+  const addFavMusic = (music) => {
+    setMusicFav(music)
+    console.log('ok')
+  }
+
+
 
   const formatMusicDuration = (time) => {
     let mins = Math.floor((time % 3600) / 60);
@@ -45,18 +52,14 @@ const CardMusic = ({ item }) => {
     }
   }
 
+  const openModal = () => {
+    setModal(true)
+  }
 
   const playMusic = (musicOn) => {
     setMusicPreview(musicOn)
-    setTooglePlayPause(!tooglePlayPause)
-    if (tooglePlayPause) {
-      pausePlayMusic.current.onPlay();
-    } else {
-      pausePlayMusic.current.onPause();
-    }
-
+    openModal()
   }
-
 
   return (
     <C.MusicStats>
@@ -74,11 +77,7 @@ const CardMusic = ({ item }) => {
               playMusic(item)}
           >
             <C.ButtonPlayPreview>
-              {tooglePlayPause ?
-                <AiFillPauseCircle />
-                :
-                <AiFillPlayCircle />
-              }
+              <AiFillPlayCircle />
             </C.ButtonPlayPreview>
           </C.ImageMusic >
         </C.ImagePreview>
@@ -88,17 +87,20 @@ const CardMusic = ({ item }) => {
             <SiYoutubemusic
               style={{
                 fontSize: '2rem',
-                color: 'grey'
-              }} />
+                color: 'grey',
+              }}
+              onClick={() =>
+                playMusic(item)} />
           </C.ImageMusic >
         </C.ImagePreview>
+
       }
 
       {item.title_short ?
         <C.MusicName>
           {item.title_short}
           <C.MusicExplicit>
-            {item.explicit_lyrics === 'true' ?
+            {item.explicit_lyrics === true ?
               <MdOutlineExplicit />
               :
               null}
@@ -117,7 +119,7 @@ const CardMusic = ({ item }) => {
       }
 
       <C.FavMusic>
-        <AiOutlineHeart />
+        <AiOutlineHeart onClick={() => addFavMusic(item)} />
       </C.FavMusic>
       <C.MusicComplete
         href={item.link}

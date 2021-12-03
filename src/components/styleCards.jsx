@@ -68,7 +68,12 @@ export const FavMusic = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 5px;
+  cursor: pointer;
+  &:hover{
+    border-radius: 50%;
+    background: #FFF;
+  }
 `
 
 export const MusicComplete = styled.a`

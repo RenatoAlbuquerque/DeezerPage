@@ -11,9 +11,9 @@ import Search from '../Search';
 import Header from '../Header';
 import Player from '../Player';
 
+
 const MusicList = () => {
   const { itens, setItens } = useContext(ItensContext)
-
 
   useEffect(() => {
     const loadMusicsInitial = async () => {
@@ -111,6 +111,7 @@ const MusicList = () => {
           :
           null
       }
+      <li id="sentinela"></li>
       <Player />
     </S.GlobalMusicList >
   )
