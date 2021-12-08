@@ -1,17 +1,11 @@
-import MusicList from './components/MusicList';
-import MusicProvider from './providers/musicPreview.js';
-import ModalProvider from './providers/modal.js';
+import React from 'react';
+import Router from './routes';
+import FavProvider from './providers/favMusic';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-        <ModalProvider>
-          <MusicProvider>
-            <MusicList />
-          </MusicProvider>
-        </ModalProvider>
-    </div>
+    <FavProvider>
+      <Router />
+    </FavProvider>
   );
 }
-
-export default App;

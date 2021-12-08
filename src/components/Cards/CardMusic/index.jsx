@@ -2,25 +2,46 @@ import React, { useContext, useState } from 'react';
 import * as C from '../../styleCards';
 import { MdOutlineExplicit } from 'react-icons/md';
 import { SiYoutubemusic } from 'react-icons/si';
-import { AiOutlineHeart, AiFillPlayCircle } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart, AiFillPlayCircle } from 'react-icons/ai';
 import { GiMicrophone } from 'react-icons/gi';
 import { ItensContext } from '../../../providers/itens';
 import { MusicContext } from '../../../providers/musicPreview';
 import { ModalContext } from '../../../providers/modal';
+import { FavContext } from '../../../providers/favMusic';
 import api from "../../../Services/api";
 
 const CardMusic = ({ item }) => {
   const { setItens } = useContext(ItensContext)
+  const favList = useContext(FavContext)
   const { setMusicPreview } = useContext(MusicContext)
-  const { modal, setModal } = useContext(ModalContext)
-  const [musicFav, setMusicFav] = useState()
+  const { setModal } = useContext(ModalContext)
+  const [toogleFav, setToogleFav] = useState(false)
 
-  const addFavMusic = (music) => {
-    setMusicFav(music)
-    console.log('ok')
+
+
+  const addFavMusic = (product) => {
+    favList.addToCart(product)
+  }
+
+  console.log(favList)
+
+
+  const removeFavMusic = (music) => {
+    console.log('removeu a musica')
   }
 
 
+
+  const ToogleFavMusic = item => {
+    return <div
+      onClick={() =>
+        setToogleFav(!toogleFav)}>
+      {toogleFav ?
+        <AiFillHeart onClick={() => removeFavMusic(item)} />
+        :
+        <AiOutlineHeart onClick={() => addFavMusic(item)} />}
+    </div>
+  }
 
   const formatMusicDuration = (time) => {
     let mins = Math.floor((time % 3600) / 60);
@@ -118,8 +139,9 @@ const CardMusic = ({ item }) => {
       }
 
       <C.FavMusic>
-        <AiOutlineHeart onClick={() => addFavMusic(item)} />
+        {ToogleFavMusic(item)}
       </C.FavMusic>
+
       <C.MusicComplete
         href={item.link}
         rel='noreferrer'
