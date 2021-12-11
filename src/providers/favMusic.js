@@ -1,39 +1,34 @@
-import React, { createContext , useState, useEffect } from "react";
+import React, { createContext , useState } from "react";
 
 export const FavContext = createContext({});
 
 const FavProvider = (props) => {
-  const [favList, setFavList] = useState({});
-  useEffect(() =>{
-    const cartLocal = window.localStorage.getItem('cart')
-    if(cartLocal) {
-      setFavList(JSON.parse(cartLocal))
+  const [favList, setFavList] = useState([]);
+  const [toogleFav, setToogleFav] = useState(false)
+
+  const addFavMusic = (music) => {
+    if (toogleFav === false) {
+      setFavList([...favList, music])
+      setToogleFav(!toogleFav)
+    } else {
+      setFavList(favList.filter((musicRemove) => musicRemove !== music));
+      setToogleFav(!toogleFav)
     }
-  },[])
-  const addToCart = (product) => {
-    setFavList((old) => {
-      let quantity = 1
-      if(old[product.id]){
-        quantity = old[product.id].quantity
-      }
-      const newCart = {
-        ...old,
-        [product.id]: {
-          quantity: quantity,
-          product,
-        },
-      }
-      window.localStorage.setItem('cart', JSON.stringify(newCart))
-      return newCart
-    })
   }
-  
+
+  const clearCart = () => {
+    setFavList([]);
+  }
+
   return (
     <FavContext.Provider
       value={{
         favList,
         setFavList,
-        addToCart
+        toogleFav,
+        setToogleFav,
+        clearCart,
+        addFavMusic
       }}
     >
       {props.children}

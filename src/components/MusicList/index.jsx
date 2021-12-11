@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useSelector } from 'react-redux';
 import * as S from '../style';
 import api from "../../Services/api";
 import { ItensContext } from '../../providers/itens';

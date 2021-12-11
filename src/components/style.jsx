@@ -27,10 +27,16 @@ export const UserOptions = styled.div`
 `
 
 export const PageMusicFavs = styled.div`
-
+  display: flex;
 `
 
 export const Login = styled.div`
+`
+export const FavlistCount = styled.div`
+  font-size: .9rem;
+  margin-left: 15px;
+  margin-top: -15px;
+  position: absolute;
 `
 
 

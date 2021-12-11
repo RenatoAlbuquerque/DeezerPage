@@ -58,8 +58,7 @@ const Player = () => {
             bottom: 0,
             backgroundColor: '#000000ce',
             color: 'lightgrey'
-          }
-          }
+          }}
           header={infoMusicOn(musicPreview)}
         />
         : null}

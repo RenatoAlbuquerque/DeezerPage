@@ -1,43 +1,28 @@
 import React, { useContext, useState } from 'react';
+import api from "../../../Services/api";
 import * as C from '../../styleCards';
+
 import { MdOutlineExplicit } from 'react-icons/md';
 import { SiYoutubemusic } from 'react-icons/si';
 import { AiOutlineHeart, AiFillHeart, AiFillPlayCircle } from 'react-icons/ai';
 import { GiMicrophone } from 'react-icons/gi';
+
 import { ItensContext } from '../../../providers/itens';
 import { MusicContext } from '../../../providers/musicPreview';
 import { ModalContext } from '../../../providers/modal';
 import { FavContext } from '../../../providers/favMusic';
-import api from "../../../Services/api";
+
 
 const CardMusic = ({ item }) => {
   const { setItens } = useContext(ItensContext)
-  const favList = useContext(FavContext)
+  const { addFavMusic, toogleFav } = useContext(FavContext)
   const { setMusicPreview } = useContext(MusicContext)
   const { setModal } = useContext(ModalContext)
-  const [toogleFav, setToogleFav] = useState(false)
-
-
-
-  const addFavMusic = (product) => {
-    favList.addToCart(product)
-  }
-
-  console.log(favList)
-
-
-  const removeFavMusic = (music) => {
-    console.log('removeu a musica')
-  }
-
-
 
   const ToogleFavMusic = item => {
-    return <div
-      onClick={() =>
-        setToogleFav(!toogleFav)}>
+    return <div>
       {toogleFav ?
-        <AiFillHeart onClick={() => removeFavMusic(item)} />
+        <AiFillHeart onClick={() => addFavMusic(item)} />
         :
         <AiOutlineHeart onClick={() => addFavMusic(item)} />}
     </div>

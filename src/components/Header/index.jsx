@@ -6,8 +6,15 @@ import { Link } from 'react-router-dom';
 import { FavContext } from '../../providers/favMusic';
 
 const Header = () => {
-  const favList = useContext(FavContext)
-  const itemsCount = Object.keys(favList.favList).length
+  const { favList } = useContext(FavContext)
+
+  const favListCount = (quant) => {
+    if (quant === 0) {
+      return null
+    } else {
+      return quant
+    }
+  }
 
   return (
     <S.Header>
@@ -19,7 +26,9 @@ const Header = () => {
       <S.UserOptions>
         <S.PageMusicFavs>
           <BsHeartHalf />
-          {itemsCount > 0 && <span>{itemsCount}</span>}
+          <S.FavlistCount>
+            {favListCount(favList.length)}
+          </S.FavlistCount>
         </S.PageMusicFavs>
         <S.Login>
           <Link to='/user'>
