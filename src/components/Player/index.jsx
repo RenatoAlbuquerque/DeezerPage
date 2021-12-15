@@ -36,6 +36,13 @@ const Player = () => {
     )
   }
 
+  const style = {
+    width: '70%',
+    position: 'fixed',
+    bottom: 0,
+    backgroundColor: '#000000ce',
+    color: 'lightgrey',
+  }
 
   return (
     <>
@@ -52,13 +59,7 @@ const Player = () => {
               RHAP_UI.CURRENT_LEFT_TIME,
             ]
           }
-          style={{
-            width: '50%',
-            position: 'fixed',
-            bottom: 0,
-            backgroundColor: '#000000ce',
-            color: 'lightgrey'
-          }}
+          style={style}
           header={infoMusicOn(musicPreview)}
         />
         : null}

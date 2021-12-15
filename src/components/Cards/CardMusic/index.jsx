@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import api from "../../../Services/api";
 import * as C from '../../styleCards';
 
@@ -10,23 +10,12 @@ import { GiMicrophone } from 'react-icons/gi';
 import { ItensContext } from '../../../providers/itens';
 import { MusicContext } from '../../../providers/musicPreview';
 import { ModalContext } from '../../../providers/modal';
-import { FavContext } from '../../../providers/favMusic';
 
 
 const CardMusic = ({ item }) => {
-  const { setItens } = useContext(ItensContext)
-  const { addFavMusic, toogleFav } = useContext(FavContext)
+  const { setItens, addFavMusic, removeFavMusic } = useContext(ItensContext)
   const { setMusicPreview } = useContext(MusicContext)
   const { setModal } = useContext(ModalContext)
-
-  const ToogleFavMusic = item => {
-    return <div>
-      {toogleFav ?
-        <AiFillHeart onClick={() => addFavMusic(item)} />
-        :
-        <AiOutlineHeart onClick={() => addFavMusic(item)} />}
-    </div>
-  }
 
   const formatMusicDuration = (time) => {
     let mins = Math.floor((time % 3600) / 60);
@@ -124,7 +113,13 @@ const CardMusic = ({ item }) => {
       }
 
       <C.FavMusic>
-        {ToogleFavMusic(item)}
+        {item.fav === true ?
+          <AiFillHeart onClick={() => removeFavMusic(item)}
+          />
+          :
+          <AiOutlineHeart onClick={() => addFavMusic(item)}
+          />
+        }
       </C.FavMusic>
 
       <C.MusicComplete

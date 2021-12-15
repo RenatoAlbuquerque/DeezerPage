@@ -12,12 +12,15 @@ export const MusicStats = styled.div`
   display: flex;
   justify-content: space-between;
   color: grey;
-  font-size: .9rem;
+  font-size: 1rem;
   align-items: center;
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
   &:hover{
     background: lightgrey;
+  }
+  @media (max-width: 650px){
+    padding-bottom: 10px;
   }
 `
 
@@ -26,6 +29,11 @@ export const ImagePreview = styled.div`
   height: 60px;
   border: none;
   padding: 0 20px;
+  @media (max-width: 650px){
+  width: 50px;
+  height: 50px;
+  padding: 0px 20px;
+  }
 `
 
 export const ImageMusic = styled.div`
@@ -126,6 +134,9 @@ export const GridList = styled.div`
   grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  @media (max-width:870px){
+      width: 95%;
+  }
 `
 export const Position = styled.div`
   display: flex;
@@ -135,6 +146,14 @@ export const Position = styled.div`
   margin-right: 20px;
   font-size: 1.5rem;
   font-family: Arial, Helvetica, sans-serif;
+  @media (max-width:870px){
+    font-size: 1rem;
+    margin-right: 5px;
+    width: 50px;
+  }
+  @media (max-width: 825px){
+    display: none;
+  }
 `
 
 export const CardArtistGlobal = styled.div`

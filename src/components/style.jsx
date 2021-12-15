@@ -84,7 +84,12 @@ export const ButtonsTrending = styled.button`
   
   &:hover{
     opacity: 0.7;
-    border: 2px solid grey;
+    border: 2px solid #0f0f0f;
+    background:linear-gradient(45deg, #ff0000, #ffed00, #ff0092, #c2ff00, #00c7f2, #c1f1fc);
+    color: #0f0f0f;
+  }
+  @media (max-width: 600px) {
+    font-size: .8rem;
   }
 `
 
@@ -112,7 +117,9 @@ export const GlobalSearch = styled.div`
   display: flex;
   justify-content: center;
   margin: 0 20px;
-  
+  @media (max-width: 580px) {
+      width: 90%;
+  }
 `
 
 export const Search = styled.input.attrs({ type: 'Search' })`
@@ -125,6 +132,12 @@ export const Search = styled.input.attrs({ type: 'Search' })`
   border-right: none;
   color: #F0f0f0;
   outline:none;
+  @media (max-width: 1000px) {
+      width: 80%;
+  }
+  @media (max-width: 580px) {
+      width: 100%;
+  }
 `
 
 export const ButtonSearch = styled.button`
@@ -138,4 +151,9 @@ export const ButtonSearch = styled.button`
   color: #F0f0f0;
   border-left: none;
   cursor: pointer;
+`
+
+export const CardLoading = styled.img`
+  margin-top: -200px;
+  width: 100%;
 `

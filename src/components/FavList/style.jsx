@@ -39,6 +39,12 @@ export const SettingsFavList = styled.div`
   @media(max-width: 700px){
     width: 95%;
   }
+  @media(max-width: 470px){
+    padding-top: 0px;
+    flex-direction: column;
+    gap: 20px;
+    font-size: .8rem;
+  }
 `
 
 export const GridListEmpty = styled.div`
@@ -46,4 +52,5 @@ export const GridListEmpty = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   margin: auto;
   padding-top: 50px;
+  margin-bottom: 56vh;
 `

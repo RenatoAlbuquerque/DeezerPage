@@ -1,0 +1,27 @@
+footer {
+  width: 100%;
+  background-color: #000000;
+  color: #F0f0f0;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 1.2rem;
+  margin-top: 30px;
+
+}
+
+.linkedinlink {
+  color: #FBFBFB;
+}
+
+.social-media {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 2rem;
+
+}
+
+#emoteSocialMedia {
+  color: lightgrey;
+}

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { Link } from "react-router-dom";
 
-import { FavContext } from '../../providers/favMusic';
+import { ItensContext } from '../../providers/itens';
 import { MusicContext } from '../../providers/musicPreview'
 import { ModalContext } from '../../providers/modal';
 
@@ -16,9 +15,9 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 
 const FavList = () => {
-    const { favList, setFavList } = useContext(FavContext);
+    const { favList, removeFavMusic, clearCart, handlePages } = useContext(ItensContext);
     const { setMusicPreview } = useContext(MusicContext);
-    const { setModal } = useContext(ModalContext)
+    const { setModal } = useContext(ModalContext);
 
     const openModal = () => {
         setModal(true)
@@ -29,29 +28,19 @@ const FavList = () => {
         openModal()
     }
 
-    const removeFavMusic = (music) => {
-        setFavList(favList.filter((musicRemove) => musicRemove !== music));
-    }
-
-    const clearMusic = () => {
-        setFavList([])
-    }
-    console.log(favList)
-
-
     return (
         <F.GlobalFavList>
             <F.SettingsFavList>
-                <Link to="/" style={{ textDecoration: 'none' }}>
-                    <Button
-                        style={{ color: 'black', borderColor: 'black' }}
-                        variant="outlined">
-                        retornar a página inicial
-                    </Button>
-                </Link>
+                <Button
+                    style={{ color: 'black', borderColor: 'black' }}
+                    variant="outlined"
+                    onClick={() => handlePages(false)}
+                >
+                    retornar a página inicial
+                </Button>
                 <Button
                     variant="outlined"
-                    onClick={() => clearMusic()}
+                    onClick={() => clearCart(favList)}
                     style={{ color: 'black', borderColor: 'black' }}
                 >
                     Limpar Músicas
@@ -77,10 +66,10 @@ const FavList = () => {
                                     }
                                     <CardContent>
                                         <Typography gutterBottom variant="h6" component="div">
-                                            {item.artist.name}
+                                            {item.title_short}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            {item.title_short}
+                                            {item.artist.name}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>

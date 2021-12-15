@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import * as S from '../style';
 import { FaUserAlt } from 'react-icons/fa';
 import { BsHeartHalf } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import { FavContext } from '../../providers/favMusic';
+import { ItensContext } from '../../providers/itens';
 
 const Header = () => {
-  const { favList } = useContext(FavContext)
+  const { favList, handlePages } = useContext(ItensContext)
 
   const favListCount = (quant) => {
     if (quant === 0) {
@@ -18,11 +17,9 @@ const Header = () => {
 
   return (
     <S.Header>
-      <Link to='/'>
-        <S.Logo
-          src="https://rollingstone.uol.com.br/media/_versions/legacy/2013/img-1015746-deezer-logo_widelg.jpg"
-          alt="logo deezer" />
-      </Link>
+      <S.Logo
+        src="https://rollingstone.uol.com.br/media/_versions/legacy/2013/img-1015746-deezer-logo_widelg.jpg"
+        alt="logo deezer" />
       <S.UserOptions>
         <S.PageMusicFavs>
           <BsHeartHalf />
@@ -31,9 +28,10 @@ const Header = () => {
           </S.FavlistCount>
         </S.PageMusicFavs>
         <S.Login>
-          <Link to='/user'>
-            <FaUserAlt style={{ color: '#FFF' }} />
-          </Link>
+          <FaUserAlt
+            style={{ color: '#FFF', cursor: 'pointer' }}
+            onClick={() =>
+              handlePages(true)} />
         </S.Login>
       </S.UserOptions>
     </S.Header>
