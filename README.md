@@ -1,6 +1,6 @@
 # Deezer Page
   <h2>Design da interface autoral consumindo API do Deezer, com informações sobre músicas, albúns, artistas, playlist e podcasts atuais.</h2>
-  <h3><a href="/" target="_blank" rel="noreferrer">Acesse a Página Aqui</a></h3>
+  <h3><a href="https://deezerwebpreview.netlify.app" target="_blank" rel="noreferrer">Acesse a Página Aqui</a></h3>
   <h3>Página WEB Músicas em Alta</h3>
   <img alt="paginaWeb" width="800" height="400" src="https://user-images.githubusercontent.com/84095953/146111145-6f84f5a2-a12e-4663-b507-10dd8cd061b8.png">
   <h3>Página WEB Músicas Favoritadas</h3>
