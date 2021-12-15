@@ -8,10 +8,18 @@ const Header = () => {
   const { favList, handlePages } = useContext(ItensContext)
 
   const favListCount = (quant) => {
-    if (quant === 0) {
+    var qtdFavList = 0;
+
+    for (var i = 0; i < quant.length; i++) {
+      if (quant[i]) {
+        qtdFavList++;
+      }
+    }
+
+    if (qtdFavList === 0) {
       return null
     } else {
-      return quant
+      return qtdFavList
     }
   }
 
@@ -24,7 +32,7 @@ const Header = () => {
         <S.PageMusicFavs>
           <BsHeartHalf />
           <S.FavlistCount>
-            {favListCount(favList.length)}
+            {favListCount(favList)}
           </S.FavlistCount>
         </S.PageMusicFavs>
         <S.Login>

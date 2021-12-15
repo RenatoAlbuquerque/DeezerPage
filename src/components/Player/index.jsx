@@ -37,7 +37,7 @@ const Player = () => {
   }
 
   const style = {
-    width: '70%',
+    width: '50%',
     position: 'fixed',
     bottom: 0,
     backgroundColor: '#000000ce',
